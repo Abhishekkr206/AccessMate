@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Content Script Demo",
+  "version": "1.0",
+  "description": "Make any website more accessible for disabled users.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": []
+}
