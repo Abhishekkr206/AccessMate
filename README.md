@@ -40,9 +40,8 @@ AccessMate injects a **content script** into every webpage, allowing users to to
 ├── popup/ 
 │ ├── popup.html
 │ ├── popup.css
-│ └── popup.js
-├── content/ 
-│ └── contentScript.js
+│ └── popup.js  
+├── contentScript.js
 ├── background.js 
 ├── icons/
 │ └── AccessMate.png

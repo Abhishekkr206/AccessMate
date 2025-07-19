@@ -2,19 +2,24 @@
   "manifest_version": 3,
   "name": "Content Script Demo",
   "version": "1.0",
-  "description": "Make any website more accessible for disabled users.",
+  "description": "AccessMate —— improves accessibility on any website with features like high contrast mode, voice navigation, and keyboard-only control — making the web easier for everyone.",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
     }
   ],
   "permissions": [],
   "action": {
     "default_icon": {
-    "16": "icons/AccessMate.png",
-    "48": "icons/AccessMate.png",
-    "128": "icons/AccessMate.png"
-  }
+      "16": "icons/AccessMate.png",
+      "48": "icons/AccessMate.png",
+      "128": "icons/AccessMate.png"
+    },
+    "default_popup": "popup/popup.html"
   }
 }
