@@ -6,8 +6,15 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["contentScript.js"]
     }
   ],
-  "permissions": []
+  "permissions": [],
+  "action": {
+    "default_icon": {
+    "16": "icons/AccessMate.png",
+    "48": "icons/AccessMate.png",
+    "128": "icons/AccessMate.png"
+  }
+  }
 }
