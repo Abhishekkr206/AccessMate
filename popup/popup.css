@@ -1,0 +1,34 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+body{
+  background-color: #101720;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.heading{
+  margin-top: 20px;
+  font-size: 50px;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+button{
+  margin: 10px;
+  padding: 10px;
+  height: 50px;
+  border-radius: 10px;
+  cursor:pointer;
+}
+
+button:hover{
+  background-color: rgb(178, 178, 178);
+}
