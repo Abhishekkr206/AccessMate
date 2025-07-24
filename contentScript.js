@@ -49,3 +49,77 @@ chrome.runtime.onMessage.addListener((req, sender, sendRes) => {
     }
   }
 });
+
+// Increase Text Size
+
+function IncreaseTextSize(){
+  const elements = document.querySelectorAll("*");
+
+
+
+  elements.forEach(el => {
+    const style = window.getComputedStyle(el);
+    const currentsize = style.fontSize;
+
+      if (!el.dataset.originalSize) {
+  el.dataset.originalSize = style.fontSize;
+}
+
+    const numericsize = parseFloat(currentsize);
+
+    const newSize = numericsize * 1.02;
+
+    el.style.fontSize = newSize + "px";
+  })
+}
+
+//Decrease Text Size
+
+function DecreaseTextSize(){
+  const elements = document.querySelectorAll("*");
+
+
+
+  elements.forEach(el => {
+    const style = window.getComputedStyle(el);
+    const currentsize = style.fontSize;
+
+      if (!el.dataset.originalSize) {
+  el.dataset.originalSize = style.fontSize;
+}
+
+    const numericsize = parseFloat(currentsize);
+
+    const newSize = numericsize * 0.98;
+
+    el.style.fontSize = newSize + "px";
+  })
+}
+
+//Reset Text Size
+
+function ResetTextSize(){
+  const elements = document.querySelectorAll("*");
+
+  elements.forEach(el => {
+    if(el.dataset.originalSize){
+      el.style.fontSize = el.dataset.originalSize;
+    }
+  })
+}
+
+
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.action === "IncreaseText") {
+    IncreaseTextSize();
+  }
+
+  if(msg.action === "DecreaseText"){
+    DecreaseTextSize();
+  }
+
+  if(msg.action === "Reset"){
+    ResetTextSize();
+  }
+});
