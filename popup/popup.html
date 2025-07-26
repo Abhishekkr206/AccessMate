@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>AccessMate</title>
-    <link rel="stylesheet" href="popup.css">
-  </head>
+<head>
+  <title>AccessMate</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
 
-  <body>
-    <div class="wrapper">
-      <div class="container">
-        <h1 class="heading">AccessMate</h1>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h1 class="heading">AccessMate</h1>
 
-        <button id="contrastBtn">Toggle High Contrast</button>
-        <button id="zoomBtn">Increase Text Size</button>
-        <button id = "decBtn">Decrease Text Size</button>
-        <button id = "resetBtn">Reset Text Size</button>
+      <label for="contrastMode">Select Accessibility Mode:</label>
 
-        <label for="contrastMode">Select Accessibility Mode: </label>
-        <select id="contrastMode">
-          <option value="">--Select--</option>
-          <option value="highContrast">High Contrast(Low Vision)</option>
-          <option value="colorblind">Colorblind-Friendly</option>
-          <option value="lowSensory">Low Sensory Mode</option>
-        </select>
+      <button id='toggleContrastDropdown'>ContrastMode</button>
+      <div id="contrastMode">
+        <p data-value="highContrast">High Contrast (Low Vision)</p>
+        <p data-value="colorblind" >Colorblind-Friendly</p>
+        <p data-value="lowSensory">Low Sensory Mode</p>
       </div>
+
+      <button id='toggleTextControl'>Text Controls</button>
+      <div id="textControl">
+        <p id="contrastBtn">Toggle High Contrast</p>
+        <p id="zoomBtn">Increase Text Size</p>
+        <p id="decBtn">Decrease Text Size</p>
+        <p id="resetBtn">Reset Text Size</p>
+      </div>
+
     </div>
+  </div>
 
-    <!-- Adding more Functionality -->
-
-    <script src="popup.js"></script>
-  </body>
+  <script src="popup.js"></script>
+</body>
 
 </html>

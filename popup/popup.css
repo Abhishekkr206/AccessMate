@@ -1,34 +1,89 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   border: none;
 }
 
-body{
+body {
   background-color: #101720;
   color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: sans-serif;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.heading{
-  margin-top: 20px;
-  font-size: 50px;
-}
-
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
-button{
-  margin: 10px;
+.container {
+  background-color: #1c1f26;
+  padding: 15px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.heading {
+  margin-bottom: 10px;
+  font-size: 36px;
+  text-align: center;
+  color: #00bfff;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #ccc;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#contrastMode, #textControl {
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  color: black;
+}
+
+#contrastMode p,
+#textControl p {
+  margin: 8px 0;
   padding: 10px;
-  height: 50px;
-  border-radius: 10px;
-  cursor:pointer;
+  background-color: #e2e6ea;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s;
 }
 
-button:hover{
-  background-color: rgb(178, 178, 178);
+#contrastMode p:hover,
+#textControl p:hover {
+  background-color: #d6d8db;
 }
