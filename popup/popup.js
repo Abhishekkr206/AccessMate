@@ -1,63 +1,70 @@
 console.log("working");
 
+// Function to toggle visibility of dropdowns
+function toggleDropdown(id) {
+  const element = document.getElementById(id);
+  if (element.style.display === 'block') {
+    element.style.display = 'none';
+  } else {
+    element.style.display = 'block';
+  }
+}
+
+// DOM fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  const dropdown = document.getElementById("contrastMode");
 
-  //storing it to chrome storage
-  chrome.storage.sync.get("contrastMode", (data) => {
-    if (data.contrastMode) {
-      dropdown.value = data.contrastMode;
-    }
+  // Toggle buttons
+  const contrastToggleBtn = document.getElementById("toggleContrastDropdown");
+  const textToggleBtn = document.getElementById("toggleTextControl");
+
+  contrastToggleBtn.addEventListener("click", () => toggleDropdown("contrastMode"));
+  textToggleBtn.addEventListener("click", () => toggleDropdown("textControl"));
+
+  // Dropdown options (High Contrast / Colorblind / Low Sensory)
+  const options = document.querySelectorAll("#contrastMode p");
+
+  // Load saved contrast mode from storage and highlight selected
+chrome.storage.sync.get("contrastMode", () => {});
+
+  // Handle dropdown option click
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      const selectedMode = option.dataset.value;
+
+      // Save to chrome storage
+      chrome.storage.sync.set({ contrastMode: selectedMode });
+
+      // Send message to content script
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          action: "applyContrastMode",
+          mode: selectedMode
+        });
+      });
+    });
   });
-  
-  dropdown.addEventListener("change", () => {
-    const selectMode = dropdown.value;
 
-    // one more sync
-    chrome.storage.sync.set({ contrastMode: selectMode });
-
-    //now in contentScript
+  // Text Controls - Increase Size
+  const zoomBtn = document.getElementById("zoomBtn");
+  zoomBtn.addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {
-        action: "applyContrastMode",
-        mode: selectMode
-      })
-    })
-  })
-});
+      chrome.tabs.sendMessage(tabs[0].id, { action: "IncreaseText" });
+    });
+  });
 
-//increase size btn
-
-document.addEventListener("DOMContentLoaded", function (){
-  const zoombtn = document.getElementById("zoomBtn");
-  zoombtn.addEventListener("click",() => {
-    chrome.tabs.query({ active:true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id ,{action:"IncreaseText"})
-    })
-  })
-})
-
-//decrease size btn
-
-document.addEventListener("DOMContentLoaded", function (){
+  // Text Controls - Decrease Size
   const decBtn = document.getElementById("decBtn");
-  decBtn.addEventListener("click",() => {
-    chrome.tabs.query({ active:true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id ,{action:"DecreaseText"})
-    })
-  })
-})
+  decBtn.addEventListener("click", () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "DecreaseText" });
+    });
+  });
 
-//reset size btn
-
-document.addEventListener("DOMContentLoaded", function (){
-  const decBtn = document.getElementById("resetBtn");
-  decBtn.addEventListener("click",() => {
-    chrome.tabs.query({ active:true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id ,{action:"Reset"})
-    })
-  })
-})
-
-
-
+  // Text Controls - Reset Size
+  const resetBtn = document.getElementById("resetBtn");
+  resetBtn.addEventListener("click", () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "Reset" });
+    });
+  });
+});
